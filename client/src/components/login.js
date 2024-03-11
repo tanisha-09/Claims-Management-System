@@ -34,7 +34,7 @@ const LoginForm = () => {
       console.log(name, email, password);
   
       try {
-          const res = await fetch("http://localhost:5000/api/v3/login/user", {
+          const res = await fetch("https://claims-management-system-backend.onrender.com/api/v3/login/user", {
               method: "POST",
               headers: {
                   "Content-Type": "application/json",
