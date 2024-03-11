@@ -42,7 +42,7 @@ const Dashboard = () => {
 
   const fetchUserPolicies = async (name) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/v3/pol/${name}`);
+      const response = await fetch(`https://claims-management-system-backend.onrender.com/api/v3/pol/${name}`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -56,7 +56,7 @@ const Dashboard = () => {
   const fetchUserClaims = async (name) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/v3/claim/${name}`
+        `https://claims-management-system-backend.onrender.com/api/v3/claim/${name}`
       );
       const data = await response.json();
       if (!response.ok) {
