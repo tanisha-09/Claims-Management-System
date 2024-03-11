@@ -1,0 +1,432 @@
+swagger: "2.0"
+info:
+  title: Claims Management System
+  version: 1.0
+
+servers:
+  - url: "http://localhost:5000/"
+    description: This is my local server
+tags:
+  - name: policy
+    description: Policy Routes
+  - name: claimant
+    description: Claimant Routes
+  - name: user
+    description: User Routes
+
+paths:
+  /api/v3/post/user:
+    post:
+      summary: Create a new user
+      description: Create a new user
+      tags:
+        - user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - name
+                - email
+                - password
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad request
+  /api/v3/getall/user:
+    get:
+      summary: Get all users
+      description: Retrieve a list of all users
+      tags:
+        - user
+      responses:
+        '200':
+          description: Success
+        '500':
+          description: Server error
+  /api/v3/getById/user/{id}:
+    get:
+      summary: Get user by ID
+      description: Retrieve a user by their ID
+      tags:
+        - user
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the user to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: User not found
+  /api/v3/upById/user/{id}:
+    put:
+      summary: Update user by ID
+      description: Update a user's information by their ID
+      tags:
+        - user
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the user to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - name
+                - email
+                - password
+      responses:
+        '200':
+          description: Updated
+        '404':
+          description: User not found
+  /api/v3/delById/user/{id}:
+    delete:
+      summary: Delete user by ID
+      description: Delete a user by their ID
+      tags:
+        - user
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the user to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User deleted successfully
+        '404':
+          description: User not found
+  /api/v3/login/user:
+    post:
+      summary: User login
+      description: Login a user with email and password
+      tags:
+        - user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+      responses:
+        '200':
+          description: Successful login
+        '404':
+          description: Invalid credentials
+        '500':
+          description: Server error
+
+  /api/v2/post/policy:
+    post:
+      summary: Create a new policy
+      description: Create a new policy
+      tags:
+        - policy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                policy_no:
+                  type: number
+                coverage_amount:
+                  type: number
+                claimed_amount:
+                  type: number
+              required:
+                - name
+                - policy_no
+                - coverage_amount
+                - claimed_amount
+      responses:
+        '201':
+          description: Created
+        '409':
+          description: Conflict
+  /api/v2/getall/policy:
+    get:
+      summary: Get all policies
+      description: Retrieve a list of all policies
+      tags:
+        - policy
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not found
+  /api/v2/getById/policy/{id}:
+    get:
+      summary: Get policy by ID
+      description: Retrieve a policy by its ID
+      tags:
+        - policy
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the policy to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Policy not found
+  /api/v2/upById/policy/{id}:
+    put:
+      summary: Update policy by ID
+      description: Update a policy's information by its ID
+      tags:
+        - policy
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the policy to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                policy_no:
+                  type: number
+                coverage_amount:
+                  type: number
+                claimed_amount:
+                  type: number
+              required:
+                - name
+                - policy_no
+                - coverage_amount
+                - claimed_amount
+      responses:
+        '200':
+          description: Updated
+        '404':
+          description: Policy not found
+  /api/v2/delById/policy/{id}:
+    delete:
+      summary: Delete policy by ID
+      description: Delete a policy by its ID
+      tags:
+        - policy
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the policy to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Policy deleted successfully
+        '404':
+          description: Policy not found
+
+          openapi: 3.0.0
+
+  /api/v1/post/claim:
+    post:
+      summary: Create a new claimant
+      description: Create a new claimant
+      tags:
+        - claimant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                hname:
+                  type: string
+                age:
+                  type: number
+                contact:
+                  type: number
+                diagnosis:
+                  type: string
+                bill_no:
+                  type: number
+                bill_amount:
+                  type: number
+                date_admission:
+                  type: string
+                  format: date
+                date_discharge:
+                  type: string
+                  format: date
+                treatment_details:
+                  type: string
+              required:
+                - name
+                - hname
+                - age
+                - contact
+                - diagnosis
+                - bill_no
+                - bill_amount
+                - date_admission
+                - date_discharge
+                - treatment_details
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad request
+  /api/v1/getall/claim:
+    get:
+      summary: Get all claimants
+      description: Retrieve a list of all claimants
+      tags:
+        - claimant
+      responses:
+        '200':
+          description: Success
+        '500':
+          description: Server error
+  /api/v1/getById/claim/{id}:
+    get:
+      summary: Get claimant by ID
+      description: Retrieve a claimant by their ID
+      tags:
+        - claimant
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the claimant to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Claimant not found
+  /api/v1/upById/claim/{id}:
+    put:
+      summary: Update claimant by ID
+      description: Update a claimant's information by their ID
+      tags:
+        - claimant
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the claimant to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                hname:
+                  type: string
+                age:
+                  type: number
+                contact:
+                  type: number
+                diagnosis:
+                  type: string
+                bill_no:
+                  type: number
+                bill_amount:
+                  type: number
+                date_admission:
+                  type: string
+                  format: date
+                date_discharge:
+                  type: string
+                  format: date
+                treatment_details:
+                  type: string
+              required:
+                - name
+                - hname
+                - age
+                - contact
+                - diagnosis
+                - bill_no
+                - bill_amount
+                - date_admission
+                - date_discharge
+                - treatment_details
+      responses:
+        '200':
+          description: Updated
+        '404':
+          description: Claimant not found
+  /api/v1/delById/claim/{id}:
+    delete:
+      summary: Delete claimant by ID
+      description: Delete a claimant by their ID
+      tags:
+        - claimant
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the claimant to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Claimant deleted successfully
+        '404':
+          description: Claimant not found
+
+

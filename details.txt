@@ -1,0 +1,5 @@
+Claims management system:
+
+Entities:
+User
+Insurer
