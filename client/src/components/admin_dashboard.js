@@ -21,7 +21,7 @@ const AdminDashboard = () => {
   const fetchPolicies = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/v2/getall/policy"
+        "https://claims-management-system-backend.onrender.com/api/v2/getall/policy"
       );
       const data = await response.json();
       setPolicies(data);
@@ -32,7 +32,7 @@ const AdminDashboard = () => {
 
   const fetchClaims = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/v1/getall/claim");
+      const response = await fetch("https://claims-management-system-backend.onrender.com/api/v1/getall/claim");
       const data = await response.json();
       setClaims(data);
     } catch (error) {
@@ -43,7 +43,7 @@ const AdminDashboard = () => {
   const handleApproval = async (claimId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/v1/upById/claim/${claimId}`,
+        `https://claims-management-system-backend.onrender.com/api/v1/upById/claim/${claimId}`,
         {
           method: "PUT",
           headers: {
@@ -69,7 +69,7 @@ const AdminDashboard = () => {
   const handleRejection = async (claimId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/v1/upById/claim/${claimId}`,
+        `https://claims-management-system-backend.onrender.com/api/v1/upById/claim/${claimId}`,
         {
           method: "PUT",
           headers: {
