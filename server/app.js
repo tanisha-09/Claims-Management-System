@@ -4,10 +4,10 @@ const swaggerUI = require('swagger-ui-express');
 const YAML = require("yamljs");
 const swaggerJsDocs = YAML.load('./api.yaml');
 const cors = require('cors');
-app.use(cors(
+app.use(cors({
     origin:"https://65f016dff10d4b8b8ebcfddb--claimsfrontend.netlify.app",
     credentials:true
-));
+}));
 //Metric collection
 const client = require("prom-client");
 
