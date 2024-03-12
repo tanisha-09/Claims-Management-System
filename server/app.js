@@ -5,7 +5,7 @@ const YAML = require("yamljs");
 const swaggerJsDocs = YAML.load('./api.yaml');
 const cors = require('cors');
 app.use(cors({
-    origin:"https://claimsfrontend.netlify.app/login",
+    origin:"https://claimsfrontend.netlify.app",
     credentials:true
 }));
 //Metric collection
